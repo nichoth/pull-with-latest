@@ -1,4 +1,11 @@
 {
+  "name": "pull-with-latest",
+  "description": "Combine a stream with the latest value from another stream",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
   "scripts": {
     "preversion": "npm run lint && npm run deps && npm test",
     "postversion": "git push && git push --tags",
@@ -16,5 +23,22 @@
   "dependencies": {
     "pull-abortable": "^4.1.0",
     "pull-stream": "^3.5.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nichoth/pull-with-latest.git"
+  },
+  "keywords": [
+    "pull-stream",
+    "pull",
+    "stream",
+    "combine",
+    "latest"
+  ],
+  "author": "nichoth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nichoth/pull-with-latest/issues"
+  },
+  "homepage": "https://github.com/nichoth/pull-with-latest#readme"
 }
