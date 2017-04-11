@@ -24,7 +24,7 @@ test('with latest', function (t) {
     )
 
     S(
-        withLatest(stream, otherStream),
+        withLatest(otherStream, stream),
         S.collect(function (err, res) {
             t.error(err)
             t.deepEqual(res, [
