@@ -20,7 +20,7 @@ function pullWithLatest (other, stream) {
         stream,
         abortable,
         map(function (ev) {
-            return [ev, latest]
+            return [latest, ev]
         })
     )
 }

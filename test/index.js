@@ -28,9 +28,9 @@ test('with latest', function (t) {
         S.collect(function (err, res) {
             t.error(err)
             t.deepEqual(res, [
-                ['a', 2],
-                ['b', 4],
-                ['c', 6]
+                [2, 'a'],
+                [4, 'b'],
+                [6, 'c']
             ], 'should combine the streams ok')
         })
     )
