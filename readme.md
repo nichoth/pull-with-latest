@@ -29,7 +29,7 @@ var other = S(
 )
 
 S(
-    withLatest(stream, other),
+    withLatest(other, stream),
     S.log()
     //   ['a', 2],
     //   ['b', 4],
