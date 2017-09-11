@@ -1,6 +1,6 @@
 # pull with latest
 
-Combine a stream with the latest value from another stream
+Take two streams, and return a new stream that emits every value from the first stream with the most recent value from the other stream.
 
 ## example
 
