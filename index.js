@@ -3,7 +3,7 @@ var map = require('pull-stream/throughs/map')
 var drain = require('pull-stream/sinks/drain')
 var Abortable = require('pull-abortable')
 
-function pullWithLatest (other, stream) {
+function pullWithLatest (predicate, other, stream) {
     var latest
     var abortable = Abortable()
 
@@ -20,6 +20,7 @@ function pullWithLatest (other, stream) {
         stream,
         abortable,
         map(function (ev) {
+            if (predicate) return predicate(latest, ev)
             return [latest, ev]
         })
     )

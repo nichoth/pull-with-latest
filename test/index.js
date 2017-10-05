@@ -2,10 +2,45 @@ var test = require('tape')
 var withLatest = require('../')
 var S = require('pull-stream')
 
-test('with latest', function (t) {
+test('pass null for the default predicate', function (t) {
     t.plan(2)
+    var predicate = null
 
-    var stream = S(
+    S(
+        withLatest.apply(null, [predicate].concat(sources())),
+        S.collect(function (err, res) {
+            t.error(err)
+            t.deepEqual(res, [
+                [2, 'a'],
+                [4, 'b'],
+                [6, 'c']
+            ], 'should combine the streams ok')
+        })
+    )
+})
+
+test('use predicate function', function (t) {
+    t.plan(2)
+    var predicate = function (a, b) {
+        return { a: a, b: b }
+    }
+
+    S(
+        withLatest.apply(null, [predicate].concat(sources())),
+        S.collect(function (err, res) {
+            t.error(err)
+            t.deepEqual(res, [
+                { a:2, b:'a' },
+                { a:4, b:'b' },
+                { a:6, b:'c' }
+            ], 'should combine the streams ok')
+        })
+    )
+})
+
+
+function sources () {
+    var sampler = S(
         S.values(['a','b','c']),
         S.asyncMap(function (ev, cb) {
             setTimeout(function () {
@@ -23,16 +58,6 @@ test('with latest', function (t) {
         })
     )
 
-    S(
-        withLatest(otherStream, stream),
-        S.collect(function (err, res) {
-            t.error(err)
-            t.deepEqual(res, [
-                [2, 'a'],
-                [4, 'b'],
-                [6, 'c']
-            ], 'should combine the streams ok')
-        })
-    )
-})
+    return [otherStream, sampler]
+}
 
