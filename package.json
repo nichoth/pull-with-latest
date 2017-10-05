@@ -1,7 +1,7 @@
 {
   "name": "pull-with-latest",
   "description": "Combine a stream with the latest value from another stream",
-  "version": "2.0.4",
+  "version": "3.0.0",
   "main": "index.js",
   "directories": {
     "test": "test"
